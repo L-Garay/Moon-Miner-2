@@ -1,7 +1,6 @@
-USING moonminer2;
+USE moonminer2;
 
 CREATE TABLE test (
   id int NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 )
