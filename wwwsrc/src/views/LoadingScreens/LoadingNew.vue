@@ -7,8 +7,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <img src="../../assets/pickaxe.png" alt="should be axe" />
-        <h3 class="moveMe">move me</h3>
+        <img src="../../assets/pickaxe.png" class="moveMe" alt="should be axe" />
       </div>
     </div>
   </div>
