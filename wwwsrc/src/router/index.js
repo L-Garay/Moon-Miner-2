@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "../views/Home.vue";
 import LoadingNew from "../views/LoadingScreens/LoadingNew.vue";
 import Dashboard from "../views/Dashboard.vue";
+import CreateGame from "../views/CreateGame.vue";
 
 Vue.use(Router);
 
@@ -17,6 +18,11 @@ export default new Router({
       path: "/loadingnew",
       name: "LoadingNew",
       component: LoadingNew
+    },
+    {
+      path: "/creategame",
+      name: "CreateGame",
+      component: CreateGame
     },
     {
       path: "/dashboard",

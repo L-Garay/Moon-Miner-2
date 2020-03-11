@@ -18,7 +18,7 @@ export default {
   name: "LoadingNew",
   mounted() {
     setTimeout(() => {
-      this.$router.push({ path: "/dashboard" });
+      this.$router.push({ path: "/creategame" });
     }, 5000);
   }
 };
