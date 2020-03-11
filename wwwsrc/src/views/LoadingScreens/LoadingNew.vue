@@ -5,27 +5,65 @@
         <h1>LoadingNew...</h1>
       </div>
     </div>
-    <div class="row animation">
-      <div>Loading animation will go here</div>
+    <div class="row">
+      <div class="col-12">
+        <img src="../../assets/pickaxe.png" class="moveMe" alt="should be axe" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LoadingNew",
-  // methods: {
-  //   routerPush() {
-  //     router.push({ path: "/dashboard" });
-  //   }
-  // },
-  mounted() {
-    setTimeout(() => {
-      this.$router.push({ path: "/dashboard" });
-    }, 5000);
-  }
+  name: "LoadingNew"
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.$router.push({ path: "/dashboard" });
+  //   }, 5000);
+  // }
 };
 </script>
 
-<style>
+<style scoped>
+img {
+  height: 300px;
+  width: 300px;
+  animation-name: axe;
+  animation-duration: 7s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  float: left;
+}
+@keyframes axe {
+  0% {
+    transform: translate(0px);
+  }
+  20% {
+    transform: translate(800px);
+  }
+  40% {
+    transform: translate(1200px);
+  }
+  60% {
+    transform: translate(800px);
+  }
+  80% {
+    transform: translate(400px);
+  }
+  100% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
 </style>
