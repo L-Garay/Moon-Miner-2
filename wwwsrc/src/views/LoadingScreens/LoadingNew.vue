@@ -7,7 +7,8 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <img src="../../assets/pickaxe.png" class="moveMe" alt="should be axe" />
+        <img src="../../assets/pickaxe.png" alt="should be axe" />
+        <h3 class="moveMe">move me</h3>
       </div>
     </div>
   </div>
@@ -15,12 +16,12 @@
 
 <script>
 export default {
-  name: "LoadingNew"
-  // mounted() {
-  //   setTimeout(() => {
-  //     this.$router.push({ path: "/dashboard" });
-  //   }, 5000);
-  // }
+  name: "LoadingNew",
+  mounted() {
+    setTimeout(() => {
+      this.$router.push({ path: "/dashboard" });
+    }, 5000);
+  }
 };
 </script>
 
@@ -29,7 +30,7 @@ img {
   height: 300px;
   width: 300px;
   animation-name: axe;
-  animation-duration: 7s;
+  animation-duration: 6s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   float: left;
