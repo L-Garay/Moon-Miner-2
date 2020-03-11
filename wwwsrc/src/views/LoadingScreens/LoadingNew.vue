@@ -13,7 +13,17 @@
 
 <script>
 export default {
-  name: "LoadingNew"
+  name: "LoadingNew",
+  // methods: {
+  //   routerPush() {
+  //     router.push({ path: "/dashboard" });
+  //   }
+  // },
+  mounted() {
+    setTimeout(() => {
+      this.$router.push({ path: "/dashboard" });
+    }, 5000);
+  }
 };
 </script>
 
