@@ -31,5 +31,18 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpGet]
+    public ActionResult<IEnumerable<TestGame>> GetAction()
+    {
+      try
+      {
+        return Ok(_tgs.Get());
+      }
+      catch (Exception e)
+      {
+
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

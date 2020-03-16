@@ -20,7 +20,12 @@ export default new Vuex.Store({
   mutations: {},
   actions: {
     async createGame({ commit, dispatch }, newGame) {
-      await api;
+      await api.post("testgame", newGame);
+      dispatch("getGames");
+    },
+    async getGames({ commit, dispatch }) {
+      let res = await api.get("testgame");
+      commit("setKeeps", res.data);
     }
   },
   modules: {}

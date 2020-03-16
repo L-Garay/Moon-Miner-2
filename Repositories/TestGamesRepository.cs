@@ -22,5 +22,11 @@ namespace moonminer.Repositories
       newGame.Id = id;
       return newGame;
     }
+
+    internal IEnumerable<TestGame> Get()
+    {
+      string sql = "SELECT * FROM testgame;";
+      return _db.Query<TestGame>(sql);
+    }
   }
 }

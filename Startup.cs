@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using moonminer.Repositories;
+using moonminer.Services;
 using MySql.Data.MySqlClient;
 
 namespace moonminer
@@ -33,6 +35,8 @@ namespace moonminer
       services.AddScoped<IDbConnection>(x => CreateDbConnection());
 
       // NOTE Resgister Services and Repositories
+      services.AddTransient<TestGamesService>();
+      services.AddTransient<TestGamesRepository>();
     }
     private IDbConnection CreateDbConnection()
     {
@@ -46,6 +50,7 @@ namespace moonminer
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        app.UseCors("CorsDevPolicy");
       }
 
       app.UseHttpsRedirection();
@@ -53,6 +58,8 @@ namespace moonminer
       app.UseRouting();
 
       app.UseAuthorization();
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
 
       app.UseEndpoints(endpoints =>
       {
