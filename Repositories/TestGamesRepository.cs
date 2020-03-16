@@ -17,7 +17,7 @@ namespace moonminer.Repositories
 
     internal TestGame Create(TestGame newGame)
     {
-      string sql = @"INSERT INTO testing (plalyerName, profileImg, playerMoney) VALUES (@PlayerName, @ProfileImg, @PlayerMoney); SELECT LAST_INSERT_ID();";
+      string sql = @"INSERT INTO testgame (playerName, profileImg) VALUES (@PlayerName, @ProfileImg); SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newGame);
       newGame.Id = id;
       return newGame;

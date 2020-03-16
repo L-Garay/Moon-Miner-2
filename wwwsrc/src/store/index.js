@@ -25,7 +25,6 @@ export default new Vuex.Store({
   },
   actions: {
     async createGame({ commit, dispatch }, newGame) {
-      debugger;
       await api.post("testgame", newGame);
       dispatch("getGames");
     },

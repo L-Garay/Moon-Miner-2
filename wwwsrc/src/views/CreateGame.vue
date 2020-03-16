@@ -7,7 +7,7 @@
         <h5>Fill out the form below</h5>
       </div>
       <div class="col-6 offset-3">
-        <form @submit="createGame">
+        <form @submit.prevent="createGame">
           <label for="name">Name:</label>
           <br />
           <input type="text" id="name" v-model="newGame.name" />
@@ -18,7 +18,7 @@
           <br />
           <button type="submit">Submit</button>
         </form>
-        <p>{{game}}</p>
+        <p>{{ game }}</p>
       </div>
     </div>
   </div>
@@ -49,5 +49,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
