@@ -10,8 +10,8 @@ let baseUrl = location.host.includes("localhost")
 
 let api = axios.create({
   baseURL: baseUrl + "api/",
-  timeout: 3000,
-  withCredentials: true
+  timeout: 3000
+  // withCredentials: true
 });
 
 export default new Vuex.Store({

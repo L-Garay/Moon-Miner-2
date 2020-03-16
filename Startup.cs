@@ -29,6 +29,20 @@ namespace moonminer
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddCors(options =>
+      {
+        options.AddPolicy("CorsDevPolicy", builder =>
+              {
+                builder
+                          .WithOrigins(new string[]{
+                            "http://localhost:8080"
+                      })
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials();
+              });
+      });
+
       services.AddControllers();
 
       // Connect to Database
