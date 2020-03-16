@@ -10,7 +10,7 @@
         <form @submit.prevent="createGame">
           <label for="name">Name:</label>
           <br />
-          <input type="text" id="name" v-model="newGame.name" />
+          <input type="text" id="name" v-model="newGame.playerName" />
           <br />
           <label for="profile">Profile Image:</label>
           <br />
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       newGame: {
-        name: "",
+        playerName: "",
         profileImg: ""
       }
     };
