@@ -9,6 +9,9 @@ export default new Vuex.Store({
   mutations: {
   },
   actions: {
+    async createGame({commit, dispatch}, newGame) {
+      await 
+    }
   },
   modules: {
   }
