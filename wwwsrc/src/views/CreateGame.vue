@@ -10,14 +10,15 @@
         <form @submit="createGame">
           <label for="name">Name:</label>
           <br />
-          <input type="text" id="name" v-model="name" />
+          <input type="text" id="name" v-model="newGame.name" />
           <br />
           <label for="profile">Profile Image:</label>
           <br />
-          <input type="text" id="profile" v-model="profileImg" />
+          <input type="text" id="profile" v-model="newGame.profileImg" />
           <br />
           <button type="submit">Submit</button>
         </form>
+        <p>{{game}}</p>
       </div>
     </div>
   </div>
@@ -38,6 +39,11 @@ export default {
     createGame() {
       this.$store.dispatch("createGame", this.newGame);
       this.newGame = {};
+    }
+  },
+  computed: {
+    game() {
+      return this.$store.state.game;
     }
   }
 };
