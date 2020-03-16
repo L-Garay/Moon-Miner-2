@@ -14,7 +14,8 @@
           <br />
           <label for="profile">Profile Image:</label>
           <br />
-          <input type="file" id="profile" @change="onFileSelected" />
+          <input type="text" id="profile" v-model="profileImg" />
+          <br />
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -29,14 +30,11 @@ export default {
     return {
       newGame: {
         name: "",
-        profileImg: null
+        profileImg: ""
       }
     };
   },
   methods: {
-    onFileSelected(event) {
-      this.profileImg = event.target.files[0];
-    },
     createGame() {
       this.$store.dispatch("createGame", this.newGame);
       this.newGame = {};
