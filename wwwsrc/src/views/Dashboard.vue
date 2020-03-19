@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard container-fluid">
     <div class="row side">
-      <profile />
+      <profile :gameData="game" />
       <div class="col-3">
         <router-link id="upgradeBtn" :to="{name: 'Upgrades', params: {id: game.id}}">
           <button>Upgrades</button>

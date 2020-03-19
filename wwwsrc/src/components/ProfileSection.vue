@@ -2,16 +2,16 @@
   <div class="col-7" id="profile">
     <div class="topProfile">
       <div>
-        <img :src="game.profileImg" alt="should just be text" />
+        <img :src="gameData.profileImg" alt="should just be text" />
       </div>
       <div>
-        <h3>{{game.playerName}}</h3>
+        <h3>{{gameData.playerName}}</h3>
         <p>This will be player xp</p>
       </div>
     </div>
     <div class="seperator"></div>
     <div class="bottomProfile">
-      <p>Player Money: {{game.playerMoney}}</p>
+      <p>Player Money: {{gameData.playerMoney}}</p>
       <p>Player Resource1:</p>
       <p>Player Resource2:</p>
       <p>Player Resource3:</p>
@@ -25,16 +25,9 @@
 <script>
 export default {
   name: "ProfileSection",
+  props: ["gameData"],
   data() {
     return {};
-  },
-  mounted() {
-    this.$store.dispatch("getGame");
-  },
-  computed: {
-    game() {
-      return this.$store.state.game;
-    }
   }
 };
 </script>

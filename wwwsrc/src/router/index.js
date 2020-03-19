@@ -6,6 +6,7 @@ import Dashboard from "../views/Dashboard.vue";
 import CreateGame from "../views/CreateGame.vue";
 import LoadingDashboard from "../views/LoadingScreens/LoadingDashboard.vue";
 import Upgrades from "../views/Upgrades.vue";
+import Market from "../views/MarketView.vue";
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: "/upgrades/:id",
       name: "Upgrades",
       component: Upgrades
+    },
+    {
+      path: "/market/:id",
+      name: "MarketView",
+      component: Market
     }
   ]
 });
