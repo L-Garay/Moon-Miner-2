@@ -16,14 +16,10 @@
 <script>
 export default {
   name: "LoadingDashboard",
-  data() {
-    return {
-      gameId: this.$route.params.id
-    };
-  },
   mounted() {
+    let gameId = this.$route.params.id;
     setTimeout(() => {
-      this.$router.push({ name: "Dashboard", params: { gameId } });
+      this.$router.push({ name: "Dashboard", params: { id: gameId } });
     }, 3000);
   }
 };
