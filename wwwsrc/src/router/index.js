@@ -5,6 +5,7 @@ import LoadingNew from "../views/LoadingScreens/LoadingNew.vue";
 import Dashboard from "../views/Dashboard.vue";
 import CreateGame from "../views/CreateGame.vue";
 import LoadingDashboard from "../views/LoadingScreens/LoadingDashboard.vue";
+import Upgrades from "../views/Upgrades.vue";
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: "/dashboard/:id",
       name: "Dashboard",
       component: Dashboard
+    },
+    {
+      path: "/upgrades/:id",
+      name: "Upgrades",
+      component: Upgrades
     }
   ]
 });

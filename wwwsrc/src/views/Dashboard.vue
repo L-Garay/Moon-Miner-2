@@ -3,7 +3,9 @@
     <div class="row side">
       <profile />
       <div class="col-3">
-        <button>Upgrades</button>
+        <router-link id="upgradeBtn" :to="{name: 'Upgrades', params: {id: game.id}}">
+          <button>Upgrades</button>
+        </router-link>
       </div>
     </div>
     <div class="row middle">
