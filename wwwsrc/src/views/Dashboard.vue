@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row side">
-      <div class="col-4">Market tab</div>
+      <market :moreGameData="game" />
       <div class="col-4">Stats tab</div>
     </div>
   </div>
@@ -22,6 +22,7 @@
 
 <script>
 import Profile from "@/components/ProfileSection.vue";
+import Market from "@/components/Market.vue";
 export default {
   name: "Dashboard",
   data() {
@@ -36,7 +37,8 @@ export default {
     }
   },
   components: {
-    Profile
+    Profile,
+    Market
   }
 };
 </script>
