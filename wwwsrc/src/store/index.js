@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import router from "../router";
 
 Vue.use(Vuex);
 
@@ -19,18 +20,19 @@ export default new Vuex.Store({
     game: {}
   },
   mutations: {
-    setGames(state, newGame) {
+    setGame(state, newGame) {
       state.game = newGame;
     }
   },
   actions: {
     async createGame({ commit, dispatch }, newGame) {
-      await api.post("testgame", newGame);
-      dispatch("getGames");
+      let res = await api.post("testgame", newGame);
+      // dispatch("getGame");
+      router.push({ name: "LoadingDashboard", params: { id: res.data.id } });
     },
-    async getGames({ commit, dispatch }) {
+    async getGame({ commit, dispatch }) {
       let res = await api.get("testgame");
-      commit("setGames", res.data);
+      commit("setGame", res.data);
     }
   },
   modules: {}

@@ -32,7 +32,7 @@ namespace moonminer.Controllers
       }
     }
     [HttpGet]
-    public ActionResult<IEnumerable<TestGame>> GetAction()
+    public ActionResult<TestGame> Get()
     {
       try
       {

@@ -23,10 +23,10 @@ namespace moonminer.Repositories
       return newGame;
     }
 
-    internal IEnumerable<TestGame> Get()
+    internal TestGame Get()
     {
-      string sql = "SELECT * FROM testgame;";
-      return _db.Query<TestGame>(sql);
+      string sql = "SELECT * FROM testgame ORDER BY id DESC LIMIT 1;";
+      return _db.QueryFirstOrDefault<TestGame>(sql);
     }
   }
 }
