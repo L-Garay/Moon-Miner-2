@@ -43,9 +43,9 @@ export default {
     previousPlanet() {
       let lastIndex = this.$store.state.planets.length - 1;
       if (this.$store.state.currentPlanet == this.$store.state.planets[0]) {
-        this.$store.state.currentPlanet = this.$store.state.planets[lastIndex];
+        return;
       } else {
-        let newIndex = this.current.id--;
+        let newIndex = this.current.id - 2;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
       }
     },
@@ -54,9 +54,9 @@ export default {
       if (
         this.$store.state.currentPlanet == this.$store.state.planets[lastIndex]
       ) {
-        this.$store.state.currentPlanet = this.$store.state.planets[0];
+        return;
       } else {
-        let newIndex = this.current.id++;
+        let newIndex = this.current.id;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
       }
     }
@@ -67,8 +67,6 @@ export default {
   computed: {
     currentPlanet() {
       this.current = this.$store.state.currentPlanet;
-      console.log(this.current);
-
       return this.$store.state.currentPlanet;
     }
   }
