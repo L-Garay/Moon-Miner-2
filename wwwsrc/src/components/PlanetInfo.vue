@@ -2,9 +2,9 @@
   <div class="col-12" style="text-align: -webkit-center;">
     <div class="gameSection">
       <div class="name">
-        <i class="fas fa-arrow-circle-left fa-2x"></i>
-        <h1>{{currentPlanet.name}}</h1>
-        <i class="fas fa-arrow-circle-right fa-2x"></i>
+        <i class="fas fa-arrow-circle-left fa-2x" @click="previousPlanet"></i>
+        <h1>{{currentPlanet.planetName}}</h1>
+        <i class="fas fa-arrow-circle-right fa-2x" @click="nextPlanet"></i>
       </div>
       <div class="playSection">
         <button>Unlock Planet</button>
@@ -19,12 +19,12 @@
         </p>
       </div>
       <div class="stats">
-        <p>Money needed to unlock:</p>
-        <p>Expidition energy cost:</p>
-        <p>Resource 1 estimate:</p>
-        <p>Resource 2 estimate:</p>
-        <p>Resource 3 estimate:</p>
-        <p>Resource 4 estimate:</p>
+        <p>Money needed to unlock: {{currentPlanet.moneyNeeded}}</p>
+        <p>Expidition energy cost: {{currentPlanet.expiditionCost}}</p>
+        <p>Resource 1 estimate: {{currentPlanet.resource1}}</p>
+        <p>Resource 2 estimate: {{currentPlanet.resource2}}</p>
+        <p>Resource 3 estimate: {{currentPlanet.resource3}}</p>
+        <p>Resource 4 estimate: {{currentPlanet.resource4}}</p>
       </div>
     </div>
   </div>
@@ -36,22 +36,41 @@ export default {
   // props: ["planetData"],
   data() {
     return {
-      currentPlanet: {
-        name: "",
-        unlock: 0,
-        expidtionCost: 0,
-        r1: 0,
-        r2: 0,
-        r3: 0,
-        r4: 0
-      }
+      current: {}
     };
+  },
+  methods: {
+    previousPlanet() {
+      let lastIndex = this.$store.state.planets.length - 1;
+      if (this.$store.state.currentPlanet == this.$store.state.planets[0]) {
+        this.$store.state.currentPlanet = this.$store.state.planets[lastIndex];
+      } else {
+        let newIndex = this.current.id--;
+        this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
+      }
+    },
+    nextPlanet() {
+      let lastIndex = this.$store.state.planets.length - 1;
+      if (
+        this.$store.state.currentPlanet == this.$store.state.planets[lastIndex]
+      ) {
+        this.$store.state.currentPlanet = this.$store.state.planets[0];
+      } else {
+        let newIndex = this.current.id++;
+        this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
+      }
+    }
   },
   mounted() {
     this.$store.dispatch("getPlanets");
   },
-  computed() {
-    return this.$store.state.planets;
+  computed: {
+    currentPlanet() {
+      this.current = this.$store.state.currentPlanet;
+      console.log(this.current);
+
+      return this.$store.state.currentPlanet;
+    }
   }
 };
 </script>

@@ -18,7 +18,8 @@ let api = axios.create({
 export default new Vuex.Store({
   state: {
     game: {},
-    planets: []
+    planets: [],
+    currentPlanet: {}
   },
   mutations: {
     setGame(state, newGame) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     setPlanets(state, planets) {
       state.planets = planets;
+    },
+    setCurrent(state, planet) {
+      state.currentPlanet = planet;
     }
   },
   actions: {
@@ -41,6 +45,7 @@ export default new Vuex.Store({
     async getPlanets({ commit, dispatch }) {
       let res = await api.get("testplanets");
       commit("setPlanets", res.data);
+      commit("setCurrent", res.data[0]);
     }
   },
   modules: {}
