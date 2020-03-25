@@ -41,6 +41,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
+/* Planet Name and navigation */
 .name {
   display: flex;
   justify-content: center;
@@ -54,19 +55,18 @@ export default {
 i:hover {
   cursor: pointer;
 }
+
+/* Picture and play buttons */
 img {
-  max-height: 400px;
-  max-width: 550px;
-}
-.playSection {
-  /* display: flex;
-  flex-direction: row;
-  align-items: center; */
+  max-height: 500px;
+  max-width: 650px;
 }
 .playSection button {
   height: 70px;
   width: 100px;
 }
+
+/* Planet Information */
 .planetInfo {
   border: 1pt solid black;
   width: 50%;
