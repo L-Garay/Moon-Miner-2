@@ -51,6 +51,8 @@ namespace moonminer
       // NOTE Resgister Services and Repositories
       services.AddTransient<TestGamesService>();
       services.AddTransient<TestGamesRepository>();
+      services.AddTransient<TestPlanetsService>();
+      services.AddTransient<TestPlanetsRepository>();
     }
     private IDbConnection CreateDbConnection()
     {
