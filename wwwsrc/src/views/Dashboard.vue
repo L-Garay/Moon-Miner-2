@@ -13,7 +13,7 @@
     </div>
     <div class="row side">
       <market :moreGameData="game" />
-      <div class="col-4">Stats tab</div>
+      <div class="col-4">Stats tab{{planets}}</div>
     </div>
   </div>
 </template>
@@ -29,10 +29,14 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getGame");
+    this.$store.dispatch("getPlanets");
   },
   computed: {
     game() {
       return this.$store.state.game;
+    },
+    planets() {
+      return this.$store.state.planets;
     }
   },
   components: {
