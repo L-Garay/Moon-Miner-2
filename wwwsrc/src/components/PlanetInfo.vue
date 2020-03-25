@@ -3,7 +3,7 @@
     <div class="gameSection">
       <div class="name">
         <i class="fas fa-arrow-circle-left fa-2x"></i>
-        <h1>Planet Name</h1>
+        <h1>{{currentPlanet.name}}</h1>
         <i class="fas fa-arrow-circle-right fa-2x"></i>
       </div>
       <div class="playSection">
@@ -32,7 +32,27 @@
 
 <script>
 export default {
-  name: "PlanetInfo"
+  name: "PlanetInfo",
+  // props: ["planetData"],
+  data() {
+    return {
+      currentPlanet: {
+        name: "",
+        unlock: 0,
+        expidtionCost: 0,
+        r1: 0,
+        r2: 0,
+        r3: 0,
+        r4: 0
+      }
+    };
+  },
+  mounted() {
+    this.$store.dispatch("getPlanets");
+  },
+  computed() {
+    return this.$store.state.planets;
+  }
 };
 </script>
 
