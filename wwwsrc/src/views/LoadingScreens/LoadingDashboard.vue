@@ -21,6 +21,8 @@ export default {
     setTimeout(() => {
       this.$router.push({ name: "Dashboard", params: { id: gameId } });
     }, 3000);
+    $("body").removeClass("modal-open");
+    $(".modal-backdrop").remove();
   }
 };
 </script>
