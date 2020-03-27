@@ -18,7 +18,6 @@
           <br />
           <button type="submit">Submit</button>
         </form>
-        <p>{{ game }}</p>
       </div>
     </div>
   </div>
@@ -40,12 +39,12 @@ export default {
       this.$store.dispatch("createGame", this.newGame);
       this.newGame = {};
     }
-  },
-  computed: {
-    game() {
-      return this.$store.state.game;
-    }
   }
+  // computed: {
+  //   game() {
+  //     return this.$store.state.game;
+  //   }
+  // }
 };
 </script>
 

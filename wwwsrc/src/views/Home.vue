@@ -36,6 +36,7 @@
                   <p
                     v-for="game in games"
                     :key="game.id"
+                    @click="loadGame(game.id)"
                   >{{game.playerName}}.....${{game.playerMoney}}</p>
                 </div>
               </div>
@@ -58,6 +59,11 @@ export default {
   computed: {
     games() {
       return this.$store.state.savedGames;
+    }
+  },
+  methods: {
+    loadGame(id) {
+      router.push({ name: "LoadingDashboard", params: { gameId: id } });
     }
   }
 };

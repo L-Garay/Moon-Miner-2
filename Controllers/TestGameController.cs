@@ -31,12 +31,12 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
-    [HttpGet]
-    public ActionResult<TestGame> Get()
+    [HttpGet("{id}")]
+    public ActionResult<TestGame> GetGame(int id)
     {
       try
       {
-        return Ok(_tgs.GetCreatedGame());
+        return Ok(_tgs.GetGame(id));
       }
       catch (Exception e)
       {

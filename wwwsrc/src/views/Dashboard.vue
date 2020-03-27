@@ -28,7 +28,7 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getGame");
+    this.$store.dispatch("getGame", this.$route.params.id);
     // this.$store.dispatch("getPlanets");
   },
   computed: {
