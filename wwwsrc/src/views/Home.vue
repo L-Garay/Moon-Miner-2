@@ -26,7 +26,18 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">Stuff</div>
+          <div class="modal-content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <h2>Select a saved game</h2>
+                </div>
+                <div class="col-8">
+                  <p v-for="game in games" :key="game.id">{{game.playerName}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +48,15 @@
 // @ is an alias to /src
 
 export default {
-  name: "Home"
+  name: "Home",
+  mounted() {
+    this.$store.dispatch("getSavedGames");
+  },
+  computed: {
+    games() {
+      return this.$store.state.savedGames;
+    }
+  }
 };
 </script>
 

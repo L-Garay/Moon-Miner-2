@@ -36,11 +36,23 @@ namespace moonminer.Controllers
     {
       try
       {
-        return Ok(_tgs.Get());
+        return Ok(_tgs.GetCreatedGame());
       }
       catch (Exception e)
       {
 
+        return BadRequest(e.Message);
+      }
+    }
+    [HttpGet("all")]
+    public ActionResult<IEnumerable<TestGame>> GetSavedGames()
+    {
+      try
+      {
+        return Ok(_tgs.GetSavedGames());
+      }
+      catch (Exception e)
+      {
         return BadRequest(e.Message);
       }
     }

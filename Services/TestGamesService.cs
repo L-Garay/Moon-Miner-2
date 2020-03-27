@@ -20,9 +20,13 @@ namespace moonminer.Services
       return newGame;
     }
 
-    internal TestGame Get()
+    internal TestGame GetCreatedGame()
     {
-      return _repo.Get();
+      return _repo.GetCreatedGame();
+    }
+    internal IEnumerable<TestGame> GetSavedGames()
+    {
+      return _repo.GetSavedGames();
     }
   }
 }
