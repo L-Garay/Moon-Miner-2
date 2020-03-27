@@ -43,7 +43,7 @@ export default new Vuex.Store({
       router.push({ name: "LoadingDashboard", params: { id: res.data.id } });
     },
     async getGame({ commit, dispatch }, id) {
-      let res = await api.get("testgame" + id);
+      let res = await api.get("testgame/" + id);
       commit("setGame", res.data);
     },
     async getSavedGames({ commit, dispatch }) {

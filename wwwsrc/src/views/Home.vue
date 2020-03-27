@@ -62,8 +62,9 @@ export default {
     }
   },
   methods: {
-    loadGame(id) {
-      router.push({ name: "LoadingDashboard", params: { gameId: id } });
+    loadGame(gameId) {
+      // this.$store.dispatch("loadGame", id);
+      this.$router.push({ name: "LoadingDashboard", params: { id: gameId } });
     }
   }
 };
@@ -92,5 +93,8 @@ img {
   border: 1pt solid gold;
   margin: 10pt;
   padding: 10pt;
+}
+p:hover {
+  cursor: pointer;
 }
 </style>

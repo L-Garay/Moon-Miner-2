@@ -26,7 +26,7 @@ namespace moonminer.Repositories
     internal TestGame GetGame(int id)
     {
       string sql = "SELECT * FROM testgame WHERE id = @id;";
-      return _db.QueryFirstOrDefault<TestGame>(sql);
+      return _db.QueryFirstOrDefault<TestGame>(sql, new { id });
     }
     internal IEnumerable<TestGame> GetSavedGames()
     {
