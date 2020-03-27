@@ -33,7 +33,10 @@
                   <h2>Select a saved game</h2>
                 </div>
                 <div class="col-8">
-                  <p v-for="game in games" :key="game.id">{{game.playerName}}</p>
+                  <p
+                    v-for="game in games"
+                    :key="game.id"
+                  >{{game.playerName}}.....${{game.playerMoney}}</p>
                 </div>
               </div>
             </div>
