@@ -13,7 +13,9 @@
             role="button"
             data-toggle="dropdown"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span>
+              <i class="fas fa-gem"></i>
+            </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <router-link class="dropdown-item" :to="{ name:'LoadingMainMenu' }">Main Menu</router-link>
