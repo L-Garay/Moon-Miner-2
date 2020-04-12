@@ -14,7 +14,7 @@
             data-toggle="dropdown"
           >
             <span>
-              <i class="fas fa-gem"></i>
+              <i class="fas fa-gem fa-lg"></i>
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -48,6 +48,12 @@ export default {
   left: -130px;
 }
 .navbar .title {
+  color: gold;
+}
+.nav-link {
+  cursor: pointer;
+}
+.fa-gem {
   color: gold;
 }
 </style>
