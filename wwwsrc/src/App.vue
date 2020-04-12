@@ -4,7 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>-->
-    <navbar />
+    <div>
+      <navbar />
+    </div>
     <router-view />
   </div>
 </template>
@@ -13,6 +15,10 @@
 import Navbar from "@/components/navbar";
 export default {
   name: "App",
+  data() {
+    return {};
+  },
+
   components: {
     Navbar
   }

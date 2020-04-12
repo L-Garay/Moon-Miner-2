@@ -2,9 +2,10 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
 import LoadingNew from "../views/LoadingScreens/LoadingNew.vue";
+import LoadingDashboard from "../views/LoadingScreens/LoadingDashboard.vue";
+import LoadingMainMenu from "../views/LoadingScreens/LoadingMainMenu.vue";
 import Dashboard from "../views/Dashboard.vue";
 import CreateGame from "../views/CreateGame.vue";
-import LoadingDashboard from "../views/LoadingScreens/LoadingDashboard.vue";
 import Upgrades from "../views/Upgrades.vue";
 import Market from "../views/MarketView.vue";
 
@@ -23,14 +24,19 @@ export default new Router({
       component: LoadingNew
     },
     {
-      path: "/creategame",
-      name: "CreateGame",
-      component: CreateGame
-    },
-    {
       path: "/loadingdashboard/:id",
       name: "LoadingDashboard",
       component: LoadingDashboard
+    },
+    {
+      path: "/loadingmainmenu",
+      name: "LoadingMainMenu",
+      component: LoadingMainMenu
+    },
+    {
+      path: "/creategame",
+      name: "CreateGame",
+      component: CreateGame
     },
     {
       path: "/dashboard/:id",
