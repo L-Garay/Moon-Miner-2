@@ -17,7 +17,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <router-link class="dropdown-item" :to="{ name:'LoadingMainMenu' }">Main Menu</router-link>
-            <div v-if="this.$route.name !== 'Dashboard'">
+            <div v-if="this.$route.name !== 'Dashboard' && this.$route.name !== 'CreateGame'">
               <router-link class="dropdown-item" :to="{ name:'Dashboard' }">Dashboard</router-link>
             </div>
 
