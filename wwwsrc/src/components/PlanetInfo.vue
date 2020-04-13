@@ -8,7 +8,7 @@
       </div>
       <div class="playSection">
         <button>Unlock Planet</button>
-        <img src="../assets/Planets/earthlike.png" alt="should be planet" />
+        <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
         <button>Begin Expidition</button>
       </div>
     </div>
@@ -100,9 +100,9 @@ i:hover {
 }
 
 /* Picture and play buttons */
-img {
-  max-height: 500px;
-  max-width: 650px;
+.planetImg {
+  height: 500px;
+  width: 550px;
 }
 .playSection button {
   height: 70px;
