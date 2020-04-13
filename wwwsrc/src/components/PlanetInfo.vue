@@ -10,8 +10,8 @@
         <button>Unlock Planet</button>
         <div>
           <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
-          <div class="over-shadow" id="shadow"></div>
-          <i class="fas fa-lock fa-7x over-img" id="lock"></i>
+          <div v-if="isLocked" class="over-shadow" id="shadow"></div>
+          <i v-if="isLocked" class="fas fa-lock fa-7x over-img" id="lock"></i>
         </div>
         <button>Begin Expidition</button>
       </div>
@@ -40,7 +40,8 @@ export default {
   // props: ["planetData"],
   data() {
     return {
-      current: {}
+      current: {},
+      isLocked: null
     };
   },
   methods: {
@@ -63,20 +64,23 @@ export default {
         let newIndex = this.current.id;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
       }
+    },
+    checkLocked() {
+      if (this.current.isLocked) {
+        this.isLocked = true;
+      } else {
+        this.isLocked = false;
+      }
     }
-    // checkLocked() {
-    //   if(this.current.isLocked) {
-
-    //   }
-    // }
   },
   mounted() {
     this.$store.dispatch("getPlanets");
-    // this.checkLocked();
+    this.checkLocked();
   },
   computed: {
     currentPlanet() {
       this.current = this.$store.state.currentPlanet;
+      this.checkLocked();
       return this.$store.state.currentPlanet;
     }
   }
