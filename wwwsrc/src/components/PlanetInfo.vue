@@ -8,7 +8,11 @@
       </div>
       <div class="playSection">
         <button>Unlock Planet</button>
-        <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
+        <div>
+          <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
+          <div class="over-shadow" id="shadow"></div>
+          <i class="fas fa-lock fa-7x over-img" id="lock"></i>
+        </div>
         <button>Begin Expidition</button>
       </div>
     </div>
@@ -103,6 +107,26 @@ i:hover {
 .planetImg {
   height: 500px;
   width: 550px;
+  position: relative;
+}
+.over-img {
+  position: absolute;
+  top: 300px;
+  left: 490px;
+  color: gold;
+}
+.over-shadow {
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.6);
+  height: 500px;
+  width: 517px;
+  top: 100px;
+  left: 275px;
+}
+.playSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .playSection button {
   height: 70px;
