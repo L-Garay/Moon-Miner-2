@@ -12,12 +12,12 @@
     <div class="seperator"></div>
     <div class="bottomProfile">
       <p>Player Money: {{gameData.playerMoney}}</p>
-      <p>Player Resource1:</p>
-      <p>Player Resource2:</p>
-      <p>Player Resource3:</p>
-      <p>Player Resource4:</p>
-      <p>Current Player Tool:</p>
-      <p>Player Energy:</p>
+      <p>Player Resource1: {{gameData.resource1}}</p>
+      <p>Player Resource2: {{gameData.resource2}}</p>
+      <p>Player Resource3: {{gameData.resource3}}</p>
+      <p>Player Resource4: {{gameData.resource4}}</p>
+      <p>Current Player Tool: {{gameData.playerTool}}</p>
+      <p>Player Energy: {{gameData.playerEnergy}}</p>
     </div>
   </div>
 </template>

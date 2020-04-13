@@ -11,6 +11,12 @@ USE moonminer2;
 --   playerName VARCHAR(255) NOT NULL,
 --   profileImg VARCHAR(255) NOT NULL,
 --   playerMoney int DEFAULT 0,
+--   playerEnergy int DEFAULT 100,
+--   playerTool VARCHAR(255) DEFAULT 'Wood Pickaxe',
+--   resource1 int DEFAULT 0,
+--   resource2 int DEFAULT 0,
+--   resource3 int DEFAULT 0,
+--   resource4 int DEFAULT 0,
 --   PRIMARY KEY (id)
 -- )
 
@@ -30,3 +36,7 @@ USE moonminer2;
 -- INSERT INTO testplanets (planetName, moneyNeeded, expiditionCost, resource1, resource2, resource3, resource4) VALUES ("Planet Two", 100, 35, 1, 10, 20, 30);
 -- INSERT INTO testplanets (planetName, moneyNeeded, expiditionCost, resource1, resource2, resource3, resource4) VALUES ("Planet Three", 250, 50, 10, 25, 40, 75);
 -- INSERT INTO testplanets (planetName, moneyNeeded, expiditionCost, resource1, resource2, resource3, resource4) VALUES ("Planet Four", 500, 75, 25, 50, 100, 150);
+
+
+-- DROP TABLE IF EXISTS testgame;
+-- DELETE FROM testgame;
