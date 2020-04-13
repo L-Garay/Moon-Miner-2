@@ -60,9 +60,15 @@ export default {
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
       }
     }
+    // checkLocked() {
+    //   if(this.current.isLocked) {
+
+    //   }
+    // }
   },
   mounted() {
     this.$store.dispatch("getPlanets");
+    // this.checkLocked();
   },
   computed: {
     currentPlanet() {

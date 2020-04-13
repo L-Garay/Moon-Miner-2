@@ -11,6 +11,7 @@ namespace moonminer.Models
     public int Resource3 { get; set; }
     public int Resource4 { get; set; }
     public bool isLocked { get; set; }
+    public string planetImg { get; set; }
 
   }
 }
