@@ -7,7 +7,7 @@
         <i class="fas fa-arrow-circle-right fa-2x" @click="nextPlanet"></i>
       </div>
       <div class="playSection">
-        <button @click="unlockPlanet(currentPlanet.id)">Unlock Planet</button>
+        <button @click="unlockPlanet">Unlock Planet</button>
         <div>
           <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
           <div v-if="isLocked" class="over-shadow" id="shadow"></div>
@@ -72,7 +72,7 @@ export default {
         this.isLocked = false;
       }
     },
-    unlockPlanet(id) {
+    unlockPlanet() {
       if (this.current.isLocked) {
         let purchaseInfo = {
           currentGame: this.$store.state.game.id,

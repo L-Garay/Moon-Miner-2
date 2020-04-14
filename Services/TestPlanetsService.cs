@@ -29,7 +29,7 @@ namespace moonminer.Services
         var updatedPlanet = planet;
         updatedPlanet.isLocked = false;
         _repo.Unlock(updatedPlanet);
-        return planet;
+        return updatedPlanet;
       }
     }
   }
