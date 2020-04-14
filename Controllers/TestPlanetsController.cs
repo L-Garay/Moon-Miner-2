@@ -32,11 +32,11 @@ namespace moonminer.Controllers
       }
     }
     [HttpPut("{id}")]
-    public ActionResult<TestPlanet> Edit([FromBody] TestPlanet update)
+    public ActionResult<TestPlanet> Edit([FromBody] TestPlanet planet)
     {
       try
       {
-        return Ok(_tps.Unlock(update));
+        return Ok(_tps.Unlock(planet));
       }
       catch (Exception e)
       {

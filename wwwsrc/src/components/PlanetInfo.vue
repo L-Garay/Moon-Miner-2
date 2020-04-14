@@ -78,12 +78,8 @@ export default {
           currentGame: this.$store.state.game.id,
           moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
         };
-        let unlockedPlanet = {
-          planetId: id,
-          isLocked: 0
-        };
-        this.$store.dispatch("unlockPlanet", unlockedPlanet);
-        this.$store.dispatch("purchasePlanet", purchaseInfo);
+        this.$store.dispatch("unlockPlanet", this.$store.state.currentPlanet);
+        // this.$store.dispatch("purchasePlanet", purchaseInfo);
       } else {
         return;
       }

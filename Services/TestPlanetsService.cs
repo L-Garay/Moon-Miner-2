@@ -17,17 +17,19 @@ namespace moonminer.Services
     {
       return _repo.Get();
     }
-    internal TestPlanet Unlock(TestPlanet update)
+    internal TestPlanet Unlock(TestPlanet planet)
     {
-      var exists = _repo.GetById(update.planetId);
+      var exists = _repo.GetById(planet.Id);
       if (exists == null)
       {
         throw new Exception("Invalid Id");
       }
       else
       {
-        _repo.Unlock(update);
-        return
+        var updatedPlanet = planet;
+        updatedPlanet.isLocked = false;
+        _repo.Unlock(updatedPlanet);
+        return planet;
       }
     }
   }
