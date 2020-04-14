@@ -88,8 +88,8 @@ export default {
         if (this.checkMoney()) {
           let updatedMoney =
             this.$store.state.game.playerMoney - this.current.moneyNeeded;
-          console.log(updateMoney);
-          this.$store.state.game.playerMoney = this.updatedMoney;
+          console.log(updatedMoney);
+          this.$store.state.game.playerMoney = updatedMoney;
           // let modifiedGame = {
           //   id: this.$store.state.game.id,
           //   playerEnergy: this.$store.state.game.playerEnergy,
