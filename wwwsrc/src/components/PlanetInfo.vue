@@ -63,6 +63,7 @@ export default {
       } else {
         let newIndex = this.current.id;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
+        console.log(this.$store.state.currentPlanet);
       }
     },
     checkLocked() {
@@ -72,14 +73,28 @@ export default {
         this.isLocked = false;
       }
     },
+    checkMoney() {
+      if (this.$store.state.game.playerMoney < this.current.moneyNeeded) {
+        return false;
+      } else if (
+        this.$store.state.game.playerMoney >= this.current.moneyNeeded
+      ) {
+        return true;
+      }
+    },
     unlockPlanet() {
       if (this.current.isLocked) {
-        let purchaseInfo = {
-          currentGame: this.$store.state.game.id,
-          moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
-        };
-        this.$store.dispatch("unlockPlanet", this.$store.state.currentPlanet);
-        // this.$store.dispatch("purchasePlanet", purchaseInfo);
+        this.checkMoney();
+        if (this.checkMoney()) {
+          let purchaseInfo = {
+            currentGame: this.$store.state.game.id,
+            moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
+          };
+          this.$store.dispatch("unlockPlanet", this.$store.state.currentPlanet);
+          // this.$store.dispatch("purchasePlanet", purchaseInfo);
+        } else {
+          // NOTE trigger window pop up saying they don't have enough money
+        }
       } else {
         return;
       }
