@@ -66,7 +66,6 @@ export default {
       } else {
         let newIndex = this.current.id;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
-        console.log(this.$store.state.currentPlanet);
       }
     },
     checkLocked() {
@@ -109,8 +108,6 @@ export default {
   computed: {
     currentPlanet() {
       this.current = this.$store.state.currentPlanet;
-      console.log("FROM computed", this.current);
-
       this.checkLocked();
       return this.$store.state.currentPlanet;
     }

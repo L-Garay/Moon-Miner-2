@@ -31,14 +31,12 @@ export default new Vuex.Store({
     },
     setPlanets(state, planets) {
       state.planets = planets;
-      console.log("planets", state.planets);
     },
     setCurrent(state, planet) {
       state.currentPlanet = planet;
     },
     setPurchasedCurrent(state, planet) {
       state.currentPlanet = planet;
-      console.log("current", state.currentPlanet);
     }
   },
   actions: {
