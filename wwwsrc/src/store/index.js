@@ -31,9 +31,14 @@ export default new Vuex.Store({
     },
     setPlanets(state, planets) {
       state.planets = planets;
+      console.log("planets", state.planets);
     },
     setCurrent(state, planet) {
       state.currentPlanet = planet;
+    },
+    setPurchasedCurrent(state, planet) {
+      state.currentPlanet = planet;
+      console.log("current", state.currentPlanet);
     }
   },
   actions: {
@@ -62,8 +67,11 @@ export default new Vuex.Store({
       commit("setCurrent", res.data[0]);
     },
     async unlockPlanet({ commit, dispatch }, planet) {
-      await api.put("testplanets/" + planet.id, planet);
-      dispatch("getPlanets");
+      let res = await api.put("testplanets/" + planet.id, planet);
+      // NOTE totally some WET Code, but I need to do it here to update the planets array without calling getPlanets which is used on first page load and will always set current to first planet; when I want the unlocked planet to be the current after purchasing
+      let planets = await api.get("testplanets");
+      commit("setPurchasedCurrent", res.data);
+      commit("setPlanets", planets.data);
     }
   },
   modules: {}

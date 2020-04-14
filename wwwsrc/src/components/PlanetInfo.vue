@@ -47,7 +47,9 @@ export default {
   methods: {
     previousPlanet() {
       let lastIndex = this.$store.state.planets.length - 1;
-      if (this.$store.state.currentPlanet == this.$store.state.planets[0]) {
+      if (
+        this.$store.state.currentPlanet.id == this.$store.state.planets[0].id
+      ) {
         this.$store.state.currentPlanet = this.$store.state.planets[lastIndex];
       } else {
         let newIndex = this.current.id - 2;
@@ -57,7 +59,8 @@ export default {
     nextPlanet() {
       let lastIndex = this.$store.state.planets.length - 1;
       if (
-        this.$store.state.currentPlanet == this.$store.state.planets[lastIndex]
+        this.$store.state.currentPlanet.id ==
+        this.$store.state.planets[lastIndex].id
       ) {
         this.$store.state.currentPlanet = this.$store.state.planets[0];
       } else {
@@ -67,7 +70,7 @@ export default {
       }
     },
     checkLocked() {
-      if (this.current.isLocked) {
+      if (this.$store.state.currentPlanet.isLocked) {
         this.isLocked = true;
       } else {
         this.isLocked = false;
@@ -88,26 +91,8 @@ export default {
         if (this.checkMoney()) {
           let updatedMoney =
             this.$store.state.game.playerMoney - this.current.moneyNeeded;
-          console.log(updatedMoney);
           this.$store.state.game.playerMoney = updatedMoney;
-          // let modifiedGame = {
-          //   id: this.$store.state.game.id,
-          //   playerEnergy: this.$store.state.game.playerEnergy,
-          //   playerMoney: this.updatedMoney,
-          //   playerName: this.$store.state.game.playerName,
-          //   playerTool: this.$store.state.game.playerTool,
-          //   profileImg: this.$store.state.game.profileImg,
-          //   resource1: this.$store.state.game.resource1,
-          //   resource2: this.$store.state.game.resource2,
-          //   resource3: this.$store.state.game.resource3,
-          //   resource4: this.$store.state.game.resource4,
-          //   moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
-          // };
           this.$store.dispatch("unlockPlanet", this.$store.state.currentPlanet);
-          console.log(
-            "should have updated money value",
-            this.$store.state.game
-          );
           this.$store.dispatch("purchasePlanet", this.$store.state.game);
         } else {
           // NOTE trigger window pop up saying they don't have enough money
@@ -124,6 +109,8 @@ export default {
   computed: {
     currentPlanet() {
       this.current = this.$store.state.currentPlanet;
+      console.log("FROM computed", this.current);
+
       this.checkLocked();
       return this.$store.state.currentPlanet;
     }
