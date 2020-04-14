@@ -7,7 +7,7 @@
         <i class="fas fa-arrow-circle-right fa-2x" @click="nextPlanet"></i>
       </div>
       <div class="playSection">
-        <button>Unlock Planet</button>
+        <button @click="unlockPlanet(currentPlanet.id)">Unlock Planet</button>
         <div>
           <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
           <div v-if="isLocked" class="over-shadow" id="shadow"></div>
@@ -37,7 +37,7 @@
 <script>
 export default {
   name: "PlanetInfo",
-  // props: ["planetData"],
+  props: ["moreGameData"],
   data() {
     return {
       current: {},
@@ -71,6 +71,22 @@ export default {
       } else {
         this.isLocked = false;
       }
+    },
+    unlockPlanet(id) {
+      if (this.current.isLocked) {
+        let purchaseInfo = {
+          currentGame: this.$store.state.game.id,
+          moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
+        };
+        let unlockedPlanet = {
+          planetId: id,
+          isLocked: 0
+        };
+        this.$store.dispatch("unlockPlanet", unlockedPlanet);
+        this.$store.dispatch("purchasePlanet", purchaseInfo);
+      } else {
+        return;
+      }
     }
   },
   mounted() {
@@ -103,7 +119,7 @@ export default {
 .name h1 {
   padding: 0 15pt 0 15pt;
 }
-i:hover {
+i.fa-2x:hover {
   cursor: pointer;
 }
 

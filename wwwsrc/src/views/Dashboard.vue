@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="row middle">
-      <planet />
+      <planet :moreGameData="game" />
     </div>
     <div class="row side">
-      <market :moreGameData="game" />
+      <market />
       <div class="col-4">Stats tab</div>
     </div>
   </div>

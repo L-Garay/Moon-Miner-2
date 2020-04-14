@@ -17,5 +17,18 @@ namespace moonminer.Services
     {
       return _repo.Get();
     }
+    internal TestPlanet Unlock(TestPlanet update)
+    {
+      var exists = _repo.GetById(update.planetId);
+      if (exists == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      else
+      {
+        _repo.Unlock(update);
+        return
+      }
+    }
   }
 }

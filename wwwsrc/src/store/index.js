@@ -37,6 +37,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    // game methods
     async createGame({ commit, dispatch }, newGame) {
       let res = await api.post("testgame", newGame);
       // dispatch("getGame", res.data.id);
@@ -50,10 +51,19 @@ export default new Vuex.Store({
       let res = await api.get("testgame/all");
       commit("setSavedGames", res.data);
     },
+    async purchasePlanet({ commit, dispatch }, purchaseInfo) {
+      let res = await api.put("testgame/" + purchaseInfo.currentGame);
+      commit("setGame", res.data);
+    },
+    // planet methods
     async getPlanets({ commit, dispatch }) {
       let res = await api.get("testplanets");
       commit("setPlanets", res.data);
       commit("setCurrent", res.data[0]);
+    },
+    async unlockPlanets({ commit, dispatch }, unlockedPlanet) {
+      await api.put("testplanets/" + unlockedPlanet.planetId, unlockedPlanet);
+      dispatch("getPlanets");
     }
   },
   modules: {}

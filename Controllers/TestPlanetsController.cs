@@ -31,5 +31,17 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut("{id}")]
+    public ActionResult<TestPlanet> Edit([FromBody] TestPlanet update)
+    {
+      try
+      {
+        return Ok(_tps.Unlock(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
