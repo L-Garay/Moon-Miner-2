@@ -51,8 +51,8 @@ export default new Vuex.Store({
       let res = await api.get("testgame/all");
       commit("setSavedGames", res.data);
     },
-    async purchasePlanet({ commit, dispatch }, purchaseInfo) {
-      let res = await api.put("testgame/" + purchaseInfo.currentGame);
+    async purchasePlanet({ commit, dispatch }, updatedGame) {
+      let res = await api.put("testgame/" + updatedGame.id, updatedGame);
       commit("setGame", res.data);
     },
     // planet methods

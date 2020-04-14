@@ -56,5 +56,17 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut("{id}")]
+    public ActionResult<TestGame> Purchase([FromBody] TestGame update)
+    {
+      try
+      {
+        return Ok(_tgs.Purchase(update));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

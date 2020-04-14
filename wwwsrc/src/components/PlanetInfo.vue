@@ -86,12 +86,29 @@ export default {
       if (this.current.isLocked) {
         this.checkMoney();
         if (this.checkMoney()) {
-          let purchaseInfo = {
-            currentGame: this.$store.state.game.id,
-            moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
-          };
+          let updatedMoney =
+            this.$store.state.game.playerMoney - this.current.moneyNeeded;
+          console.log(updateMoney);
+          this.$store.state.game.playerMoney = this.updatedMoney;
+          // let modifiedGame = {
+          //   id: this.$store.state.game.id,
+          //   playerEnergy: this.$store.state.game.playerEnergy,
+          //   playerMoney: this.updatedMoney,
+          //   playerName: this.$store.state.game.playerName,
+          //   playerTool: this.$store.state.game.playerTool,
+          //   profileImg: this.$store.state.game.profileImg,
+          //   resource1: this.$store.state.game.resource1,
+          //   resource2: this.$store.state.game.resource2,
+          //   resource3: this.$store.state.game.resource3,
+          //   resource4: this.$store.state.game.resource4,
+          //   moneyNeeded: this.$store.state.currentPlanet.moneyNeeded
+          // };
           this.$store.dispatch("unlockPlanet", this.$store.state.currentPlanet);
-          // this.$store.dispatch("purchasePlanet", purchaseInfo);
+          console.log(
+            "should have updated money value",
+            this.$store.state.game
+          );
+          this.$store.dispatch("purchasePlanet", this.$store.state.game);
         } else {
           // NOTE trigger window pop up saying they don't have enough money
         }

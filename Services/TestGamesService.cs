@@ -28,5 +28,18 @@ namespace moonminer.Services
     {
       return _repo.GetSavedGames();
     }
+    internal TestGame Purchase(TestGame update)
+    {
+      var exists = _repo.GetGame(update.Id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      else
+      {
+        _repo.Purchase(update);
+        return update;
+      }
+    }
   }
 }

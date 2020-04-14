@@ -33,5 +33,10 @@ namespace moonminer.Repositories
       string sql = "SELECT * FROM testgame;";
       return _db.Query<TestGame>(sql);
     }
+    internal void Purchase(TestGame update)
+    {
+      string sql = @"UPDATE testgame SET playerName = @PlayerName, profileImg = @ProfileImg, playerEnergy = @PlayerEnergy, playerTool = @PlayerTool, playerMoney = @PlayerMoney, resource1 = @Resource1, resource2 = @Resource2, resource3 = @Resource3, resource4 = @Resource4 WHERE id = @Id;";
+      _db.Execute(sql, update);
+    }
   }
 }
