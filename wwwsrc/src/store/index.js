@@ -57,7 +57,7 @@ export default new Vuex.Store({
     async deleteGameById({ commit, dispatch }, gameId) {
       console.log('game id being sent to sserver', gameId);
       await api.delete('testgame/' + gameId);
-      dispatch('getSavedGames');
+      // dispatch('getSavedGames');
     },
     async purchasePlanet({ commit, dispatch }, updatedGame) {
       let res = await api.put('testgame/' + updatedGame.id, updatedGame);

@@ -36,16 +36,22 @@
                 </div>
                 <div class="col-8">
                   <ol v-if="savedGames">
-                    <li
-                      v-for="game in games"
-                      :key="game.id"
-                      @click="loadGame(game.id)"
-                    >
+                    <li v-for="game in games" :key="game.id">
                       {{ game.playerName }}.....${{ game.playerMoney }}
-                      <i
-                        class="fas fa-trash-alt"
+                      <button
+                        type="button"
+                        @click="loadGame(game.id)"
+                        class="btn loadBtn"
+                      >
+                        Load Game
+                      </button>
+                      <button
+                        type="button"
                         @click="deleteGameById(game.id)"
-                      ></i>
+                        class="btn deleteBtn"
+                      >
+                        Delete Game
+                      </button>
                     </li>
                   </ol>
                   <p v-else>
@@ -94,8 +100,9 @@ export default {
       // this.$store.dispatch("loadGame", id);
       this.$router.push({ name: 'LoadingDashboard', params: { id: gameId } });
     },
-    deleteGameById(gameId) {
-      this.$store.dispatch('deleteGameById', gameId);
+    async deleteGameById(gameId) {
+      await this.$store.dispatch('deleteGameById', gameId);
+      this.getSavedGames();
     },
   },
 };
