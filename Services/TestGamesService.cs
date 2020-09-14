@@ -41,5 +41,15 @@ namespace moonminer.Services
         return update;
       }
     }
+    internal string DeleteGame(int id)
+    {
+      var exists = _repo.GetGame(id);
+      if (exists == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      _repo.DeleteGame(id);
+      return "Successfully deleted..";
+    }
   }
 }

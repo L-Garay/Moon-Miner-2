@@ -15,7 +15,9 @@
             class="btn"
             data-toggle="modal"
             data-target=".bd-example-modal-lg"
-          >Load Games</button>
+          >
+            Load Games
+          </button>
         </div>
       </div>
       <div
@@ -33,11 +35,23 @@
                   <h2>Select a saved game</h2>
                 </div>
                 <div class="col-8">
-                  <p
-                    v-for="game in games"
-                    :key="game.id"
-                    @click="loadGame(game.id)"
-                  >{{game.playerName}}.....${{game.playerMoney}}</p>
+                  <ol v-if="savedGames">
+                    <li
+                      v-for="game in games"
+                      :key="game.id"
+                      @click="loadGame(game.id)"
+                    >
+                      {{ game.playerName }}.....${{ game.playerMoney }}
+                      <i
+                        class="fas fa-trash-alt"
+                        @click="deleteGameById(game.id)"
+                      ></i>
+                    </li>
+                  </ol>
+                  <p v-else>
+                    Looks like you don't have any games saved yet, what are you
+                    waiting for? Get mining!
+                  </p>
                 </div>
               </div>
             </div>
@@ -52,21 +66,38 @@
 // @ is an alias to /src
 
 export default {
-  name: "Home",
+  name: 'Home',
+  data() {
+    return {
+      savedGames: true,
+    };
+  },
   mounted() {
-    this.$store.dispatch("getSavedGames");
+    // this.$store.dispatch('getSavedGames');
+    this.getSavedGames();
   },
   computed: {
     games() {
       return this.$store.state.savedGames;
-    }
+    },
   },
   methods: {
+    async getSavedGames() {
+      await this.$store.dispatch('getSavedGames');
+      if (this.$store.state.savedGames.length > 0) {
+        this.savedGames = true;
+      } else if (this.$store.state.savedGames.length === 0) {
+        this.savedGames = false;
+      }
+    },
     loadGame(gameId) {
       // this.$store.dispatch("loadGame", id);
-      this.$router.push({ name: "LoadingDashboard", params: { id: gameId } });
-    }
-  }
+      this.$router.push({ name: 'LoadingDashboard', params: { id: gameId } });
+    },
+    deleteGameById(gameId) {
+      this.$store.dispatch('deleteGameById', gameId);
+    },
+  },
 };
 </script>
 
@@ -94,7 +125,7 @@ img {
   margin: 10pt;
   padding: 10pt;
 }
-p:hover {
+li:hover {
   cursor: pointer;
 }
 </style>

@@ -68,5 +68,17 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpDelete("{id}")]
+    public ActionResult<String> DeleteGame(int id)
+    {
+      try
+      {
+        return Ok(_tgs.DeleteGame(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }
