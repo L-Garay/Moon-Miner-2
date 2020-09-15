@@ -13,6 +13,7 @@ namespace moonminer.Models
     public int Resource2 { get; set; }
     public int Resource3 { get; set; }
     public int Resource4 { get; set; }
+    public int PlanetId { get; set; }
 
   }
 }

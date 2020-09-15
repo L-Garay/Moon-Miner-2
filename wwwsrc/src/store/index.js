@@ -67,7 +67,11 @@ export default new Vuex.Store({
     async getPlanets({ commit, dispatch }) {
       let res = await api.get('testplanets');
       commit('setPlanets', res.data);
-      commit('setCurrent', res.data[0]);
+      // commit('setCurrent', res.data[0]);
+    },
+    async setCurrentPlanet({ commit, dispatch }, planetId) {
+      let res = await api.get('testplanets' + planetId);
+      commit('setCurrent', res.data);
     },
     async unlockPlanet({ commit, dispatch }, planet) {
       let res = await api.put('testplanets/' + planet.id, planet);

@@ -42,10 +42,11 @@
 export default {
   name: 'PlanetInfo',
   props: ['moreGameData'],
-  data() {
+  data: function() {
     return {
       current: {},
       isLocked: null,
+      game: this.moreGameData,
     };
   },
   methods: {
@@ -104,10 +105,18 @@ export default {
         return;
       }
     },
+    findLastUnlocked() {
+      let planetId = this.game.planetId;
+      this.setCurrentPlanet(planetId);
+    },
+    setCurrentPlanet(planetId) {
+      this.$store.dispatch('setCurrentPlanet', planetId);
+    },
   },
   mounted() {
     this.$store.dispatch('getPlanets');
-    this.checkLocked();
+    this.findLastUnlocked();
+    // this.checkLocked();
   },
   computed: {
     currentPlanet() {

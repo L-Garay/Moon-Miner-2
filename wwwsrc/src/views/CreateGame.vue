@@ -25,21 +25,21 @@
 
 <script>
 export default {
-  name: "CreateGame",
+  name: 'CreateGame',
   data() {
     return {
       newGame: {
-        playerName: "",
-        profileImg: ""
-      }
+        playerName: '',
+        profileImg: '',
+      },
     };
   },
   methods: {
     createGame() {
-      this.$store.dispatch("createGame", this.newGame);
+      this.$store.dispatch('createGame', this.newGame);
       this.newGame = {};
-    }
-  }
+    },
+  },
   // computed: {
   //   game() {
   //     return this.$store.state.game;

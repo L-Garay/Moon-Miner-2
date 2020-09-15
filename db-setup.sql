@@ -11,6 +11,7 @@ USE moonminer2;
 --   resource2 int DEFAULT 1000,
 --   resource3 int DEFAULT 0,
 --   resource4 int DEFAULT 0,
+--   planetId int DEFAULT 1,
 --   PRIMARY KEY (id)
 -- )
 

@@ -31,6 +31,19 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpGet("{id}")]
+    public ActionResult<TestPlanet> GetByPlanetId(int id)
+    {
+      try
+      {
+        return Ok(_tps.GetByPlanetId(id));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
+
     [HttpPut("{id}")]
     public ActionResult<TestPlanet> Edit([FromBody] TestPlanet planet)
     {

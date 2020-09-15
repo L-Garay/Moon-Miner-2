@@ -17,6 +17,10 @@ namespace moonminer.Services
     {
       return _repo.Get();
     }
+    internal TestPlanet GetByPlanetId(int id)
+    {
+      return _repo.GetById(id);
+    }
     internal TestPlanet Unlock(TestPlanet planet)
     {
       var exists = _repo.GetById(planet.Id);
