@@ -28,7 +28,7 @@ namespace moonminer.Services
     {
       return _repo.GetSavedGames();
     }
-    internal TestGame Purchase(TestGame update)
+    internal TestGame Update(TestGame update)
     {
       var exists = _repo.GetGame(update.Id);
       if (exists == null)
@@ -37,7 +37,7 @@ namespace moonminer.Services
       }
       else
       {
-        _repo.Purchase(update);
+        _repo.Update(update);
         return update;
       }
     }

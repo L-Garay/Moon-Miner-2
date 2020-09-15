@@ -3,13 +3,17 @@
     <div class="gameSection">
       <div class="name">
         <i class="fas fa-arrow-circle-left fa-2x" @click="previousPlanet"></i>
-        <h1>{{currentPlanet.planetName}}</h1>
+        <h1>{{ currentPlanet.planetName }}</h1>
         <i class="fas fa-arrow-circle-right fa-2x" @click="nextPlanet"></i>
       </div>
       <div class="playSection">
         <button @click="unlockPlanet">Unlock Planet</button>
         <div>
-          <img :src="currentPlanet.planetImg" class="planetImg" alt="should be planet" />
+          <img
+            :src="currentPlanet.planetImg"
+            class="planetImg"
+            alt="should be planet"
+          />
           <div v-if="isLocked" class="over-shadow" id="shadow"></div>
           <i v-if="isLocked" class="fas fa-lock fa-7x over-img" id="lock"></i>
         </div>
@@ -23,12 +27,12 @@
         </p>
       </div>
       <div class="stats">
-        <p>Money needed to unlock: {{currentPlanet.moneyNeeded}}</p>
-        <p>Expidition energy cost: {{currentPlanet.expiditionCost}}</p>
-        <p>Resource 1 estimate: {{currentPlanet.resource1}}</p>
-        <p>Resource 2 estimate: {{currentPlanet.resource2}}</p>
-        <p>Resource 3 estimate: {{currentPlanet.resource3}}</p>
-        <p>Resource 4 estimate: {{currentPlanet.resource4}}</p>
+        <p>Money needed to unlock: {{ currentPlanet.moneyNeeded }}</p>
+        <p>Expidition energy cost: {{ currentPlanet.expiditionCost }}</p>
+        <p>Resource 1 estimate: {{ currentPlanet.resource1 }}</p>
+        <p>Resource 2 estimate: {{ currentPlanet.resource2 }}</p>
+        <p>Resource 3 estimate: {{ currentPlanet.resource3 }}</p>
+        <p>Resource 4 estimate: {{ currentPlanet.resource4 }}</p>
       </div>
     </div>
   </div>
@@ -36,12 +40,12 @@
 
 <script>
 export default {
-  name: "PlanetInfo",
-  props: ["moreGameData"],
+  name: 'PlanetInfo',
+  props: ['moreGameData'],
   data() {
     return {
       current: {},
-      isLocked: null
+      isLocked: null,
     };
   },
   methods: {
@@ -91,18 +95,18 @@ export default {
           let updatedMoney =
             this.$store.state.game.playerMoney - this.current.moneyNeeded;
           this.$store.state.game.playerMoney = updatedMoney;
-          this.$store.dispatch("unlockPlanet", this.$store.state.currentPlanet);
-          this.$store.dispatch("purchasePlanet", this.$store.state.game);
+          this.$store.dispatch('unlockPlanet', this.$store.state.currentPlanet);
+          this.$store.dispatch('updateGame', this.$store.state.game);
         } else {
           // NOTE trigger window pop up saying they don't have enough money
         }
       } else {
         return;
       }
-    }
+    },
   },
   mounted() {
-    this.$store.dispatch("getPlanets");
+    this.$store.dispatch('getPlanets');
     this.checkLocked();
   },
   computed: {
@@ -110,8 +114,8 @@ export default {
       this.current = this.$store.state.currentPlanet;
       this.checkLocked();
       return this.$store.state.currentPlanet;
-    }
-  }
+    },
+  },
 };
 </script>
 

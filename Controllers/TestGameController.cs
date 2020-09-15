@@ -57,11 +57,11 @@ namespace moonminer.Controllers
       }
     }
     [HttpPut("{id}")]
-    public ActionResult<TestGame> Purchase([FromBody] TestGame update)
+    public ActionResult<TestGame> Update([FromBody] TestGame update)
     {
       try
       {
-        return Ok(_tgs.Purchase(update));
+        return Ok(_tgs.Update(update));
       }
       catch (Exception e)
       {
