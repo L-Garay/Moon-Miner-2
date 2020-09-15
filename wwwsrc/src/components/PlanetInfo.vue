@@ -106,6 +106,8 @@ export default {
       }
     },
     findLastUnlocked() {
+      console.log(this.game);
+      // debugger;
       let planetId = this.game.planetId;
       this.setCurrentPlanet(planetId);
     },
