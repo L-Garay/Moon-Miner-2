@@ -96,6 +96,8 @@ export default {
           let updatedMoney =
             this.$store.state.game.playerMoney - this.current.moneyNeeded;
           this.$store.state.game.playerMoney = updatedMoney;
+          let currentId = this.$store.state.currentPlanet.id;
+          this.$store.state.game.planetId = currentId;
           this.$store.dispatch('unlockPlanet', this.$store.state.currentPlanet);
           this.$store.dispatch('updateGame', this.$store.state.game);
         } else {

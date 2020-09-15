@@ -32,7 +32,7 @@ namespace moonminer.Controllers
       }
     }
     [HttpGet("{id}")]
-    public ActionResult<TestPlanet> GetByPlanetId(int id)
+    public ActionResult<TestPlanet> Get(int id)
     {
       try
       {

@@ -5,7 +5,7 @@ import router from '../router';
 
 Vue.use(Vuex);
 
-let baseUrl = location.host.includes('localhost')
+let baseUrl = location.host.includes('localhost:8080')
   ? 'https://localhost:5001/'
   : '/';
 
@@ -63,15 +63,19 @@ export default new Vuex.Store({
       let res = await api.put('testgame/' + updatedGame.id, updatedGame);
       commit('setGame', res.data);
     },
+
     // planet methods
     async getPlanets({ commit, dispatch }) {
       let res = await api.get('testplanets');
+      debugger;
       commit('setPlanets', res.data);
       // commit('setCurrent', res.data[0]);
     },
     async setCurrentPlanet({ commit, dispatch }, planetId) {
       let res = await api.get('testplanets/' + planetId);
-      commit('setCurrent', res.data);
+      debugger;
+      let unlocked = await api.put('testplanets/' + planetId, res.data);
+      commit('setCurrent', unlocked);
     },
     async unlockPlanet({ commit, dispatch }, planet) {
       let res = await api.put('testplanets/' + planet.id, planet);
