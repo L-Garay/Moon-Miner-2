@@ -1,6 +1,10 @@
 <template>
   <nav
-    v-if="['CreateGame', 'Dashboard', 'Upgrades', 'MarketView'].indexOf($route.name) > -1"
+    v-if="
+      ['CreateGame', 'Dashboard', 'Upgrades', 'MarketView'].indexOf(
+        $route.name
+      ) > -1
+    "
     class="navbar navbar-expand-lg navbar-light bg-light"
   >
     <h2 class="title">MoonMiner</h2>
@@ -18,9 +22,21 @@
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <router-link class="dropdown-item" :to="{ name:'LoadingMainMenu' }">Main Menu</router-link>
-            <div v-if="this.$route.name !== 'Dashboard' && this.$route.name !== 'CreateGame'">
-              <router-link class="dropdown-item" :to="{ name:'Dashboard' }">Dashboard</router-link>
+            <router-link
+              class="dropdown-item"
+              :to="{ name: 'LoadingMainMenu' }"
+              @click="resetPlanets"
+              >Main Menu</router-link
+            >
+            <div
+              v-if="
+                this.$route.name !== 'Dashboard' &&
+                  this.$route.name !== 'CreateGame'
+              "
+            >
+              <router-link class="dropdown-item" :to="{ name: 'Dashboard' }"
+                >Dashboard</router-link
+              >
             </div>
 
             <a class="dropdown-item" href="#">Something else here</a>
@@ -33,10 +49,15 @@
 
 <script>
 export default {
-  name: "Navbar",
+  name: 'Navbar',
   data() {
     return {};
-  }
+  },
+  methods: {
+    resetPlanets() {
+      dispatch('resetPlanets');
+    },
+  },
 };
 </script>
 

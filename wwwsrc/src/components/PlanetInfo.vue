@@ -69,9 +69,11 @@ export default {
         this.$store.state.planets[lastIndex].id
       ) {
         this.$store.state.currentPlanet = this.$store.state.planets[0];
+        this.checkLocked();
       } else {
         let newIndex = this.current.id;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
+        this.checkLocked();
       }
     },
     checkLocked() {
@@ -94,12 +96,16 @@ export default {
       if (this.current.isLocked) {
         this.checkMoney();
         if (this.checkMoney()) {
+          // calculates player's new money total
           let updatedMoney =
             this.$store.state.game.playerMoney - this.current.moneyNeeded;
           this.$store.state.game.playerMoney = updatedMoney;
+          // set's whatever planet id the player just unlocked as the game's latest planet (planetId)
           let currentId = this.$store.state.currentPlanet.id;
           this.$store.state.game.planetId = currentId;
+          // this will access the planet's server/database and update the isLocked property AND
           this.$store.dispatch('unlockPlanet', this.$store.state.currentPlanet);
+          // will access the game's server/database and update the player's money total and planetId
           this.$store.dispatch('updateGame', this.$store.state.game);
         } else {
           // NOTE trigger window pop up saying they don't have enough money
