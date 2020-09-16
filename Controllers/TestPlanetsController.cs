@@ -56,6 +56,18 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut]
+    public ActionResult<String> ResetPlanets()
+    {
+      try
+      {
+        return Ok(_tps.ResetPlanets());
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
 
   }
 }

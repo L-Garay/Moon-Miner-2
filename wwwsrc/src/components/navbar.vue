@@ -22,12 +22,7 @@
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <router-link
-              class="dropdown-item"
-              :to="{ name: 'LoadingMainMenu' }"
-              @click="resetPlanets"
-              >Main Menu</router-link
-            >
+            <p class="dropdown-item" @click="resetPlanets">Main Menu</p>
             <div
               v-if="
                 this.$route.name !== 'Dashboard' &&
@@ -55,7 +50,7 @@ export default {
   },
   methods: {
     resetPlanets() {
-      dispatch('resetPlanets');
+      this.$store.dispatch('resetPlanets');
     },
   },
 };

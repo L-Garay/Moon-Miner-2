@@ -36,5 +36,10 @@ namespace moonminer.Services
         return updatedPlanet;
       }
     }
+    internal string ResetPlanets()
+    {
+      _repo.ResetPlanets();
+      return "Successfully reset..";
+    }
   }
 }

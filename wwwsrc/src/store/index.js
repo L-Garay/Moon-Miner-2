@@ -77,6 +77,10 @@ export default new Vuex.Store({
       // dispatch('getPlanets');
       commit('setCurrent', res.data);
     },
+    async resetPlanets({ commit, dispatch }) {
+      await api.put('testplanets');
+      router.push({ name: 'LoadingMainMenu' });
+    },
   },
   modules: {},
 });

@@ -30,5 +30,10 @@ namespace moonminer.Repositories
       string sql = @"UPDATE testplanets SET planetName = @PlanetName, moneyNeeded = @MoneyNeeded, expiditionCost = @ExpiditionCost, resource1 = @Resource1, resource2 = @Resource2, resource3 = @Resource3, resource4 = @Resource4, planetImg = @planetImg, isLocked = @isLocked WHERE id = @Id;";
       _db.Execute(sql, planet);
     }
+    internal void ResetPlanets()
+    {
+      string sql = @"UPDATE testplanets SET isLocked = 1 WHERE isLocked = 0;";
+      _db.Execute(sql);
+    }
   }
 }
