@@ -56,5 +56,17 @@ namespace moonminer.Controllers
         return BadRequest(e.Message);
       }
     }
+    [HttpPut("current/{id}")]
+    public ActionResult<TestPlanet> EditLocked([FromBody] TestPlanet planet)
+    {
+      try
+      {
+        return Ok(_tps.EditLocked(planet));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

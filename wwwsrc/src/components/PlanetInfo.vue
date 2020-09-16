@@ -32,7 +32,7 @@
         <p>Resource 1 estimate: {{ currentPlanet.resource1 }}</p>
         <p>Resource 2 estimate: {{ currentPlanet.resource2 }}</p>
         <p>Resource 3 estimate: {{ currentPlanet.resource3 }}</p>
-        <p>Resource 4 estimate: {{ currentPlanet.resource4 }}</p>
+        <p>Resource 4 estimate: {{ currentPlanet.resource4 }}{{ planets }}</p>
       </div>
     </div>
   </div>
@@ -46,7 +46,6 @@ export default {
     return {
       current: {},
       isLocked: null,
-      game: this.moreGameData,
     };
   },
   methods: {
@@ -108,21 +107,22 @@ export default {
       }
     },
     findLastUnlocked() {
-      console.log(this.game);
-      // debugger;
-      let planetId = this.game.planetId;
-      this.setCurrentPlanet(planetId);
-    },
-    setCurrentPlanet(planetId) {
+      let planetId = this.$store.state.game.planetId;
+      console.log(planetId);
       this.$store.dispatch('setCurrentPlanet', planetId);
     },
   },
   mounted() {
     this.$store.dispatch('getPlanets');
-    this.findLastUnlocked();
     // this.checkLocked();
   },
   computed: {
+    planets() {
+      console.log('WORKS SO FAR');
+      this.findLastUnlocked();
+      console.log('WJWJWJ');
+      return this.$store.state.planets;
+    },
     currentPlanet() {
       this.current = this.$store.state.currentPlanet;
       this.checkLocked();
