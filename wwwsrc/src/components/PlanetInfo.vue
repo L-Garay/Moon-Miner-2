@@ -32,7 +32,8 @@
         <p>Resource 1 estimate: {{ currentPlanet.resource1 }}</p>
         <p>Resource 2 estimate: {{ currentPlanet.resource2 }}</p>
         <p>Resource 3 estimate: {{ currentPlanet.resource3 }}</p>
-        <p>Resource 4 estimate: {{ currentPlanet.resource4 }}{{ planets }}</p>
+        <p>Resource 4 estimate: {{ currentPlanet.resource4 }}</p>
+        <p v-show="neverShow">{{ planets }}</p>
       </div>
     </div>
   </div>
@@ -46,6 +47,7 @@ export default {
     return {
       current: {},
       isLocked: null,
+      neverShow: false,
     };
   },
   methods: {
@@ -122,6 +124,7 @@ export default {
       this.findLastUnlocked();
       console.log('WJWJWJ');
       return this.$store.state.planets;
+      // NOTE for some reason I have to invoke or call 'planets' within the template, otherwise I'm unable to access the 'findLastUnlocked' method. So I have put my invocation within a v-show element, and ensured it will never show to the user, but therefore I can still access the method.
     },
     currentPlanet() {
       this.current = this.$store.state.currentPlanet;
