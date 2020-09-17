@@ -32,7 +32,7 @@ namespace moonminer.Repositories
     }
     internal void ResetPlanets()
     {
-      string sql = @"UPDATE testplanets SET isLocked = 1 WHERE isLocked = 0;";
+      string sql = @"UPDATE testplanets SET isLocked = 1 WHERE id > 1;";
       _db.Execute(sql);
     }
   }

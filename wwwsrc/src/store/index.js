@@ -39,6 +39,11 @@ export default new Vuex.Store({
         state.currentPlanet
       );
     },
+    resetGame(state) {
+      state.game = {};
+      state.currentPlanet = {};
+      state.planets = [];
+    },
   },
   actions: {
     // game methods
@@ -76,6 +81,7 @@ export default new Vuex.Store({
     },
     async resetPlanets({ commit, dispatch }) {
       await api.put('testplanets');
+      commit('resetGame');
       router.push({ name: 'LoadingMainMenu' });
     },
   },

@@ -45,7 +45,7 @@ export default {
   data: function() {
     return {
       current: {},
-      isLocked: null,
+      isLocked: false,
       neverShow: false,
     };
   },
@@ -92,7 +92,6 @@ export default {
       }
     },
     checkLocked() {
-      // console.log('checkLocked', this.$store.state.currentPlanet);
       if (this.$store.state.currentPlanet.isLocked) {
         this.isLocked = true;
       } else {
@@ -136,7 +135,7 @@ export default {
       }
     },
     async findLastUnlocked() {
-      await this.$store.dispatch('getPlanets');
+      // await this.$store.dispatch('getPlanets');
       let planetId = this.$store.state.game.planetId;
       let planetsArr = this.$store.state.planets;
       debugger;
