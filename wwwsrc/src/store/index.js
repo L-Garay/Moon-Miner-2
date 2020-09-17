@@ -34,13 +34,16 @@ export default new Vuex.Store({
     },
     setCurrent(state, planet) {
       state.currentPlanet = planet;
+      console.log(
+        'this is what is being stored in the state as the current planet',
+        state.currentPlanet
+      );
     },
   },
   actions: {
     // game methods
     async createGame({ commit, dispatch }, newGame) {
       let res = await api.post('testgame', newGame);
-      // dispatch("getGame", res.data.id);
       router.push({ name: 'LoadingDashboard', params: { id: res.data.id } });
     },
     async getGame({ commit, dispatch }, id) {
@@ -65,16 +68,10 @@ export default new Vuex.Store({
     async getPlanets({ commit, dispatch }) {
       let res = await api.get('testplanets');
       commit('setPlanets', res.data);
-      // commit('setCurrent', res.data[0]);
-    },
-    async setCurrentPlanet({ commit, dispatch }, planetId) {
-      // finds the planet based on the current game's planetId
-      let res = await api.get('testplanets/' + planetId);
-      dispatch('unlockPlanet', res.data);
     },
     async unlockPlanet({ commit, dispatch }, planet) {
       let res = await api.put('testplanets/' + planet.id, planet);
-      dispatch('getPlanets');
+      console.log('this is what is being recieved and sent to state', res.data);
       commit('setCurrent', res.data);
     },
     async resetPlanets({ commit, dispatch }) {

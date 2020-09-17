@@ -3,7 +3,10 @@
     <div class="row side">
       <profile :gameData="game" />
       <div class="col-3">
-        <router-link id="upgradeBtn" :to="{name: 'Upgrades', params: {id: game.id}}">
+        <router-link
+          id="upgradeBtn"
+          :to="{ name: 'Upgrades', params: { id: game.id } }"
+        >
           <button>Upgrades</button>
         </router-link>
       </div>
@@ -19,33 +22,29 @@
 </template>
 
 <script>
-import Profile from "@/components/ProfileSection.vue";
-import Market from "@/components/Market.vue";
-import Planet from "@/components/PlanetInfo.vue";
+import Profile from '@/components/ProfileSection.vue';
+import Market from '@/components/Market.vue';
+import Planet from '@/components/PlanetInfo.vue';
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   data() {
     return {};
   },
   mounted() {
-    this.$store.dispatch("getGame", this.$route.params.id);
-    $("body").removeClass("modal-open");
-    $(".modal-backdrop").remove();
-    // this.$store.dispatch("getPlanets");
+    this.$store.dispatch('getGame', this.$route.params.id);
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
   },
   computed: {
     game() {
       return this.$store.state.game;
-    }
-    // planets() {
-    //   return this.$store.state.planets;
-    // }
+    },
   },
   components: {
     Profile,
     Market,
-    Planet
-  }
+    Planet,
+  },
 };
 </script>
 

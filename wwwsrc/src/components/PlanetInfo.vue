@@ -33,7 +33,6 @@
         <p>Resource 2 estimate: {{ currentPlanet.resource2 }}</p>
         <p>Resource 3 estimate: {{ currentPlanet.resource3 }}</p>
         <p>Resource 4 estimate: {{ currentPlanet.resource4 }}</p>
-        <p v-show="neverShow">{{ planets }}</p>
       </div>
     </div>
   </div>
@@ -50,6 +49,20 @@ export default {
       neverShow: false,
     };
   },
+  mounted() {
+    // this.$store.dispatch('getGame', this.moreGameData.id);
+    this.findLastUnlocked();
+  },
+  computed: {
+    // planets() {
+    //   return this.$store.state.planets;
+    //   // NOTE for some reason I have to invoke or call 'planets' within the template, otherwise I'm unable to access the 'findLastUnlocked' method. So I have put my invocation within a v-show element, and ensured it will never show to the user, but therefore I can still access the method.
+    // },
+    currentPlanet() {
+      this.checkLocked();
+      return this.$store.state.currentPlanet;
+    },
+  },
   methods: {
     previousPlanet() {
       let lastIndex = this.$store.state.planets.length - 1;
@@ -65,8 +78,6 @@ export default {
       }
     },
     nextPlanet() {
-      // debugger;
-      console.log(this.$store.state.currentPlanet);
       let lastIndex = this.$store.state.planets.length - 1;
       if (
         this.$store.state.currentPlanet.id ==
@@ -81,27 +92,11 @@ export default {
       }
     },
     checkLocked() {
+      // console.log('checkLocked', this.$store.state.currentPlanet);
       if (this.$store.state.currentPlanet.isLocked) {
         this.isLocked = true;
-        console.log('from store', this.$store.state.currentPlanet.isLocked);
-        console.log('local', this.isLocked);
       } else {
         this.isLocked = false;
-        console.log('from store', this.$store.state.currentPlanet.isLocked);
-        console.log('local', this.isLocked);
-      }
-    },
-    checkMoney() {
-      if (
-        this.$store.state.game.playerMoney <
-        this.$store.state.currentPlanet.moneyNeeded
-      ) {
-        return false;
-      } else if (
-        this.$store.state.game.playerMoney >=
-        this.$store.state.currentPlanet.moneyNeeded
-      ) {
-        return true;
       }
     },
     unlockPlanet() {
@@ -127,41 +122,36 @@ export default {
         return;
       }
     },
+    checkMoney() {
+      if (
+        this.$store.state.game.playerMoney <
+        this.$store.state.currentPlanet.moneyNeeded
+      ) {
+        return false;
+      } else if (
+        this.$store.state.game.playerMoney >=
+        this.$store.state.currentPlanet.moneyNeeded
+      ) {
+        return true;
+      }
+    },
     async findLastUnlocked() {
       await this.$store.dispatch('getPlanets');
       let planetId = this.$store.state.game.planetId;
       let planetsArr = this.$store.state.planets;
-      console.log(this.$store.state.game);
-      // debugger;
+      debugger;
       planetsArr.forEach((planet) => {
         if (planet.id <= planetId) {
           this.$store.dispatch('unlockPlanet', planet);
-          console.log(planet);
+          console.log(
+            'this is the planet that should be getting unlocked',
+            planet
+          );
         } else {
           return;
         }
       });
       this.$store.dispatch('getPlanets');
-    },
-  },
-  mounted() {
-    console.log('this is the game data prop', this.moreGameData);
-    this.$store.dispatch('getGame', this.moreGameData.id);
-    this.findLastUnlocked();
-    // this.$store.dispatch('getPlanets');
-  },
-  computed: {
-    planets() {
-      // console.log('WORKS SO FAR');
-      // this.findLastUnlocked();
-      // console.log('WJWJWJ');
-      return this.$store.state.planets;
-      // NOTE for some reason I have to invoke or call 'planets' within the template, otherwise I'm unable to access the 'findLastUnlocked' method. So I have put my invocation within a v-show element, and ensured it will never show to the user, but therefore I can still access the method.
-    },
-    currentPlanet() {
-      // this.current = this.$store.state.currentPlanet;
-      this.checkLocked();
-      return this.$store.state.currentPlanet;
     },
   },
 };
