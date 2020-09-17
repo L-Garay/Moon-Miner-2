@@ -59,12 +59,14 @@ export default {
         this.$store.state.currentPlanet = this.$store.state.planets[lastIndex];
         this.checkLocked();
       } else {
-        let newIndex = this.current.id - 2;
+        let newIndex = this.$store.state.currentPlanet.id - 2;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
         this.checkLocked();
       }
     },
     nextPlanet() {
+      // debugger;
+      console.log(this.$store.state.currentPlanet);
       let lastIndex = this.$store.state.planets.length - 1;
       if (
         this.$store.state.currentPlanet.id ==
@@ -73,7 +75,7 @@ export default {
         this.$store.state.currentPlanet = this.$store.state.planets[0];
         this.checkLocked();
       } else {
-        let newIndex = this.current.id;
+        let newIndex = this.$store.state.currentPlanet.id;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
         this.checkLocked();
       }
@@ -90,21 +92,26 @@ export default {
       }
     },
     checkMoney() {
-      if (this.$store.state.game.playerMoney < this.current.moneyNeeded) {
+      if (
+        this.$store.state.game.playerMoney <
+        this.$store.state.currentPlanet.moneyNeeded
+      ) {
         return false;
       } else if (
-        this.$store.state.game.playerMoney >= this.current.moneyNeeded
+        this.$store.state.game.playerMoney >=
+        this.$store.state.currentPlanet.moneyNeeded
       ) {
         return true;
       }
     },
     unlockPlanet() {
-      if (this.current.isLocked) {
+      if (this.$store.state.currentPlanet.isLocked) {
         this.checkMoney();
         if (this.checkMoney()) {
           // calculates player's new money total
           let updatedMoney =
-            this.$store.state.game.playerMoney - this.current.moneyNeeded;
+            this.$store.state.game.playerMoney -
+            this.$store.state.currentPlanet.moneyNeeded;
           this.$store.state.game.playerMoney = updatedMoney;
           // set's whatever planet id the player just unlocked as the game's latest planet (planetId)
           let currentId = this.$store.state.currentPlanet.id;
@@ -120,9 +127,9 @@ export default {
         return;
       }
     },
-    findLastUnlocked() {
+    async findLastUnlocked() {
+      await this.$store.dispatch('getPlanets');
       let planetId = this.$store.state.game.planetId;
-      console.log(planetId);
       let planetsArr = this.$store.state.planets;
       planetsArr.forEach((planet) => {
         if (planet.id <= planetId) {
@@ -136,19 +143,19 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('getPlanets');
-    // this.checkLocked();
+    this.findLastUnlocked();
+    // this.$store.dispatch('getPlanets');
   },
   computed: {
     planets() {
-      console.log('WORKS SO FAR');
-      this.findLastUnlocked();
-      console.log('WJWJWJ');
+      // console.log('WORKS SO FAR');
+      // this.findLastUnlocked();
+      // console.log('WJWJWJ');
       return this.$store.state.planets;
       // NOTE for some reason I have to invoke or call 'planets' within the template, otherwise I'm unable to access the 'findLastUnlocked' method. So I have put my invocation within a v-show element, and ensured it will never show to the user, but therefore I can still access the method.
     },
     currentPlanet() {
-      this.current = this.$store.state.currentPlanet;
+      // this.current = this.$store.state.currentPlanet;
       this.checkLocked();
       return this.$store.state.currentPlanet;
     },
