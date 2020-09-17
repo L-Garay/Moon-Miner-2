@@ -131,6 +131,8 @@ export default {
       await this.$store.dispatch('getPlanets');
       let planetId = this.$store.state.game.planetId;
       let planetsArr = this.$store.state.planets;
+      console.log(this.$store.state.game);
+      // debugger;
       planetsArr.forEach((planet) => {
         if (planet.id <= planetId) {
           this.$store.dispatch('unlockPlanet', planet);
@@ -139,10 +141,12 @@ export default {
           return;
         }
       });
-      this.$store.dispatch('setCurrentPlanet', planetId);
+      this.$store.dispatch('getPlanets');
     },
   },
   mounted() {
+    console.log('this is the game data prop', this.moreGameData);
+    this.$store.dispatch('getGame', this.moreGameData.id);
     this.findLastUnlocked();
     // this.$store.dispatch('getPlanets');
   },

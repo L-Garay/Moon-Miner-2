@@ -22,7 +22,7 @@
             </span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <p class="dropdown-item" @click="resetPlanets">Main Menu</p>
+            <p class="dropdown-item" @click="reset">Main Menu</p>
             <div
               v-if="
                 this.$route.name !== 'Dashboard' &&
@@ -49,8 +49,9 @@ export default {
     return {};
   },
   methods: {
-    resetPlanets() {
+    reset() {
       this.$store.dispatch('resetPlanets');
+      // this.$store.dispatch('resetGame');
     },
   },
 };
