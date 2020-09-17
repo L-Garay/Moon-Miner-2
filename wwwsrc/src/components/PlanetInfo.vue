@@ -57,9 +57,11 @@ export default {
         this.$store.state.currentPlanet.id == this.$store.state.planets[0].id
       ) {
         this.$store.state.currentPlanet = this.$store.state.planets[lastIndex];
+        this.checkLocked();
       } else {
         let newIndex = this.current.id - 2;
         this.$store.state.currentPlanet = this.$store.state.planets[newIndex];
+        this.checkLocked();
       }
     },
     nextPlanet() {
@@ -79,8 +81,12 @@ export default {
     checkLocked() {
       if (this.$store.state.currentPlanet.isLocked) {
         this.isLocked = true;
+        console.log('from store', this.$store.state.currentPlanet.isLocked);
+        console.log('local', this.isLocked);
       } else {
         this.isLocked = false;
+        console.log('from store', this.$store.state.currentPlanet.isLocked);
+        console.log('local', this.isLocked);
       }
     },
     checkMoney() {
@@ -117,6 +123,15 @@ export default {
     findLastUnlocked() {
       let planetId = this.$store.state.game.planetId;
       console.log(planetId);
+      let planetsArr = this.$store.state.planets;
+      planetsArr.forEach((planet) => {
+        if (planet.id <= planetId) {
+          this.$store.dispatch('unlockPlanet', planet);
+          console.log(planet);
+        } else {
+          return;
+        }
+      });
       this.$store.dispatch('setCurrentPlanet', planetId);
     },
   },
