@@ -112,6 +112,7 @@ export default {
           this.$store.state.game.planetId = currentId;
           // this will access the planet's server/database and update the isLocked property AND
           this.$store.dispatch('unlockPlanet', this.$store.state.currentPlanet);
+          this.$store.dispatch('getPlanets');
           // will access the game's server/database and update the player's money total and planetId
           this.$store.dispatch('updateGame', this.$store.state.game);
         } else {
@@ -150,6 +151,7 @@ export default {
               'this is the planet that should be getting unlocked',
               planet
             );
+            this.$store.dispatch('getPlanets');
           } else {
             return;
           }
@@ -166,12 +168,12 @@ export default {
               'this is the planet that should be getting unlocked',
               planet
             );
+            this.$store.dispatch('getPlanets');
           } else {
             return;
           }
         });
       }
-      this.$store.dispatch('getPlanets');
     },
   },
 };
