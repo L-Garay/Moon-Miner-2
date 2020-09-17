@@ -135,21 +135,42 @@ export default {
       }
     },
     async findLastUnlocked() {
-      // await this.$store.dispatch('getPlanets');
-      let planetId = this.$store.state.game.planetId;
-      let planetsArr = this.$store.state.planets;
-      debugger;
-      planetsArr.forEach((planet) => {
-        if (planet.id <= planetId) {
-          this.$store.dispatch('unlockPlanet', planet);
-          console.log(
-            'this is the planet that should be getting unlocked',
-            planet
-          );
-        } else {
-          return;
-        }
-      });
+      await this.$store.dispatch('getPlanets');
+      // NOTE the if statement is to basically provide a safety net and ensure that if for some reason the app gets here before the game is set in the store, this will make another call and try to set the game before unlocking planets (which the planetId from the game is necessary to do so)
+      // debugger;
+      if (!this.$store.state.game.planetId) {
+        await this.$store.dispatch('getGame', this.$route.params.id);
+        let planetId = this.$store.state.game.planetId;
+        let planetsArr = this.$store.state.planets;
+
+        planetsArr.forEach((planet) => {
+          if (planet.id <= planetId) {
+            this.$store.dispatch('unlockPlanet', planet);
+            console.log(
+              'this is the planet that should be getting unlocked',
+              planet
+            );
+          } else {
+            return;
+          }
+        });
+      } else {
+        // NOTE this is the exact same code (definetely some WET code) but this will be run if the game is already set by the time the app gets here
+        let planetId = this.$store.state.game.planetId;
+        let planetsArr = this.$store.state.planets;
+
+        planetsArr.forEach((planet) => {
+          if (planet.id <= planetId) {
+            this.$store.dispatch('unlockPlanet', planet);
+            console.log(
+              'this is the planet that should be getting unlocked',
+              planet
+            );
+          } else {
+            return;
+          }
+        });
+      }
       this.$store.dispatch('getPlanets');
     },
   },

@@ -32,7 +32,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getGame', this.$route.params.id);
-    this.$store.dispatch('getPlanets');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
   },
